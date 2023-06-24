@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Details = ({ detailsData, setShowDetails, setDetails }) => {
+function Details({ detailsData, setShowDetails, setDetails }) {
   console.log("detailsData:", detailsData);
 
   const handleClose = () => {
@@ -10,8 +10,11 @@ export const Details = ({ detailsData, setShowDetails, setDetails }) => {
   return (
     <div className="absolute bg-white min-h-full h-full opacity-95 mx-auto z-20 w-full box-border">
       <div className="w-full relative p-20">
-        <button className="absolute right-20 uppercase text-orange-sirene-dark font-bold" onClick={handleClose}>
-        fermer
+        <button
+          className="absolute right-20 uppercase text-orange-sirene hover:text-orange-sirene-dark font-bold"
+          onClick={handleClose}
+        >
+          fermer
         </button>
         <div className="max-w-lg mx-auto flex flex-col p-14 gap-10">
           <p className="text-base font-medium text-gray-900 truncate">
@@ -19,6 +22,7 @@ export const Details = ({ detailsData, setShowDetails, setDetails }) => {
           </p>
           <p className="text-sm text-gray-500 truncate ">
             {detailsData.adresseEtablissement.numeroVoieEtablissement}{" "}
+            {detailsData.adresseEtablissement.typeVoieEtablissement}{" "}
             {detailsData.adresseEtablissement.libelleVoieEtablissement}{" "}
             {detailsData.adresseEtablissement.libelleCommuneEtablissement}
           </p>
@@ -42,4 +46,6 @@ export const Details = ({ detailsData, setShowDetails, setDetails }) => {
       </div>
     </div>
   );
-};
+}
+
+export default Details;
