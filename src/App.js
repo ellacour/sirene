@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useCookies} from "react-cookie"
 import logo from "./logo-sirene.jpeg";
 import searching from "./searching.png";
 import "./App.css";
@@ -6,9 +7,12 @@ import Listing from "./components/Listing";
 import Details from "./components/Details";
 import SearchBar from "./components/SearchBar";
 import Pagination from "./components/Pagination";
+import JetonModale from "./components/JetonModale";
 
 function App() {
+  const [cookies, setCookie] = useCookies(['jeton']);
   const [showDetails, setShowDetails] = useState(false);
+  const [showModal, setShowModal] = useState(Object.entries(cookies).length === 0);
   const [details, setDetails] = useState();
   const [searchResult, setSearchResult] = useState();
   const [searchState, setSearchState] = useState();
@@ -23,7 +27,6 @@ function App() {
       ? searchResult.etablissements.slice(indexOfFirstPost, indexOfLastPost)
       : [];
 
-  // Change page
   const paginateFront = () =>
     currentPage < 4 && setCurrentPage(currentPage + 1);
   const paginateBack = () => currentPage > 1 && setCurrentPage(currentPage - 1);
@@ -35,10 +38,17 @@ function App() {
     setCurrentPage(1)
   };
 
-  console.log("currentPage", currentPage);
+  console.log("cookies", cookies);
 
   return (
     <div>
+      {showModal  && (
+        <JetonModale
+          className="container mx-auto h-screen"
+          setShowModal={setShowModal}
+          setCookie={setCookie}
+        />
+      )}
       {showDetails && (
         <Details
           className="container mx-auto h-screen"
@@ -58,7 +68,7 @@ function App() {
           src={searching}
           alt="Logo"
         />
-        <SearchBar handleResultsReceived={handleResultsReceived} />
+        <SearchBar handleResultsReceived={handleResultsReceived} setShowModal={setShowModal} jeton={cookies.jeton}/>
         {searchResult && searchState === 200 ? (
           <Listing
             data={currentPosts}

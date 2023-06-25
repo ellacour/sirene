@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SearchBar({ handleResultsReceived }) {
+function SearchBar({ handleResultsReceived, setShowModal, jeton }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +17,7 @@ function SearchBar({ handleResultsReceived }) {
       : `raisonSociale:(${inputValue}*)`;
 
     fetch(`https://api.insee.fr/entreprises/sirene/V3/siret?q=${search}`, {
-      headers: { Authorization: "Bearer 5e2f32e1-772d-3c20-a959-acf25fe2cbad" },
+      headers: { Authorization: `Bearer ${jeton}` },
     })
       .then((response) => response.json())
       .then((data) => {
@@ -25,9 +25,10 @@ function SearchBar({ handleResultsReceived }) {
         setIsLoading(false);setInputValue("")
       })
       .catch((error) => {
-        console.error(error);
+        console.error("ERROR:",error);
         setIsLoading(false);
         setInputValue("")
+        setShowModal(true)
       });
   };
 
