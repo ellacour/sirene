@@ -14,7 +14,7 @@ function SearchBar({ handleResultsReceived, setShowModal, jeton }) {
 
     const search = isSiret
       ? `siret:${inputValue}`
-      : `raisonSociale:(${inputValue}*)`;
+      : `raisonSociale:(${inputValue.replace(/ /g, "%20AND%20raisonSociale:")}*)`;
 
     fetch(`https://api.insee.fr/entreprises/sirene/V3/siret?q=${search}`, {
       headers: { Authorization: `Bearer ${jeton}` },
