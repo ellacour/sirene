@@ -5,7 +5,6 @@ function JetonModale({ setShowModal, setCookie }) {
   const [isLoading, setIsLoading] = useState(false);
   const [jetonIsValid, setJetonIsValid] = useState(false);
 
-  console.log("jetonIsValid", jetonIsValid, isLoading);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -21,7 +20,6 @@ function JetonModale({ setShowModal, setCookie }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        // handleResultsReceived(data);
         console.log("data", data);
         setIsLoading(false);
         setInputValue("");
@@ -79,7 +77,7 @@ function JetonModale({ setShowModal, setCookie }) {
           )}
           <p className=" text-center text-medium font-bold z-10 text-slate-400">
             Veuillez saisir votre jeton d'accès ou vous rendre sur{" "}
-            <a className="text-orange-sirene" href="https://api.insee.fr">
+            <a className="text-orange-sirene" href="https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/pages/item-info.jag?name=Sirene&version=V3&provider=insee">
               le site de l'insee
             </a>{" "}
             l'API concernée est Sirene V3.

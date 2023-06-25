@@ -1,8 +1,6 @@
 import React from "react";
 
 function Details({ detailsData, setShowDetails, setDetails }) {
-  console.log("detailsData:", detailsData);
-
   const handleClose = () => {
     setShowDetails(false);
     setDetails("");
