@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function JetonModale({ setShowModal, setCookie }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [jetonIsValid, setJetonIsValid] = useState(false);
+
 
 
   const handleInputChange = (event) => {
@@ -23,7 +23,6 @@ function JetonModale({ setShowModal, setCookie }) {
         console.log("data", data);
         setIsLoading(false);
         setInputValue("");
-        setJetonIsValid(true);
         setShowModal(false);
         setCookie("jeton", inputValue);
       })

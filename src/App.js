@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useCookies } from "react-cookie";
 import logo from "./logo-sirene.jpeg";
 import searching from "./searching.png";
-import "./App.css";
 import Listing from "./components/Listing";
 import Details from "./components/Details";
 import SearchBar from "./components/SearchBar";
